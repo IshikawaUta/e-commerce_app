@@ -1,0 +1,68 @@
+---
+layout: default
+title: Hasil Pencarian
+---
+
+<div class="max-w-7xl mx-auto py-12 px-4 min-h-screen">
+    <div class="mb-12">
+        <div class="flex items-center gap-4 mb-2">
+            <a href="/" class="w-10 h-10 bg-slate-50 rounded-2xl flex items-center justify-center text-slate-500 hover:bg-slate-100 transition-all">
+                <i class="fas fa-arrow-left text-sm"></i>
+            </a>
+            <h1 class="text-3xl font-black text-slate-900 tracking-tighter uppercase">Hasil Pencarian</h1>
+        </div>
+        <p id="search-status" class="ml-14 text-slate-400 text-sm font-medium italic"></p>
+    </div>
+
+    <!-- <input type="hidden" id="search-page-input"> -->
+    <div class="md:hidden pb-6">
+        <form action="/search" method="GET" class="md:flex flex-1 max-w-md mx-4 relative group">
+            <input type="text" name="q" id="nav-search-input" 
+                   class="w-full bg-gray-100 border-2 border-transparent rounded-2xl py-2.5 pl-12 pr-4 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-100 transition-all placeholder:text-gray-400 text-sm outline-none"
+                   placeholder="Cari produk favoritmu...">
+            <button type="submit" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-blue-600 transition-colors">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+    </div>
+
+    <div id="search-results-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+        <div class="col-span-full py-20 text-center" id="search-loading">
+            <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-blue-600 border-t-transparent mb-4"></div>
+            <p class="text-slate-400">Mencari produk...</p>
+        </div>
+    </div>
+
+    <div id="search-empty" class="hidden text-center py-20">
+        <h3 class="text-xl font-bold text-slate-800">Duh, Nggak Ketemu!</h3>
+        <p class="text-slate-400 mt-2">Coba cek ejaan di kolom pencarian navbar atau gunakan kata kunci lain.</p>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Karena input utama sekarang di navbar, kita sinkronkan input hidden
+        // agar logika di app.js tetap berjalan dengan baik.
+        const navInput = document.getElementById('nav-search-input');
+        const hiddenInput = document.getElementById('search-page-input');
+        
+        if (navInput && hiddenInput) {
+            navInput.addEventListener('input', (e) => {
+                hiddenInput.value = e.target.value;
+                // Picu event input manual agar app.js mendeteksi perubahan
+                hiddenInput.dispatchEvent(new Event('input'));
+            });
+        }
+
+        // Jalankan inisialisasi dari app.js
+        if (typeof initSearchPage === 'function') {
+            initSearchPage();
+        }
+        
+        // Hapus loading spinner setelah data dimuat (biasanya sangat cepat)
+        setTimeout(() => {
+            const loading = document.getElementById('search-loading');
+            if(loading) loading.remove();
+        }, 500);
+    });
+</script>

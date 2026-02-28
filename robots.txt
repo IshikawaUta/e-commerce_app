@@ -1,0 +1,9 @@
+---
+layout: null
+---
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /search.html?*
+
+Sitemap: {{ site.url }}/sitemap.xml

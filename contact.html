@@ -1,0 +1,126 @@
+---
+layout: default
+title: Kontak Kami
+---
+
+<div class="max-w-4xl mx-auto py-20 px-4 min-h-screen">
+    <div class="mb-12 flex items-center gap-4" data-aos="fade-right">
+        <a href="/" class="w-12 h-12 bg-white border border-slate-100 rounded-2xl flex items-center justify-center text-slate-500 hover:bg-slate-50 hover:text-blue-600 transition-all shadow-sm">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <span class="text-xs font-bold uppercase tracking-widest text-slate-400">Kembali ke Beranda</span>
+    </div>
+
+    <div class="text-center mb-16" data-aos="fade-down">
+        <span class="inline-block px-5 py-2 rounded-full bg-blue-50 text-blue-600 text-[10px] font-black uppercase tracking-[0.3em] mb-4">
+            Get In Touch
+        </span>
+        <h1 class="text-5xl md:text-6xl font-black text-slate-900 tracking-tighter mb-4">HUBUNGI <span class="text-blue-600">KAMI</span></h1>
+        <p class="text-slate-500">Punya pertanyaan? Kirim pesan langsung ke admin WhatsApp kami.</p>
+    </div>
+
+    <div class="bg-white rounded-[3rem] p-8 md:p-12 border border-slate-100 shadow-2xl shadow-slate-200/50" data-aos="zoom-in">
+        <form id="whatsapp-form" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-2">
+                    <label class="text-xs font-bold uppercase tracking-widest text-slate-400 ml-2">Nama Lengkap</label>
+                    <input type="text" id="contact-name" required
+                           class="w-full bg-slate-50 border-2 border-transparent focus:border-blue-600 focus:bg-white rounded-2xl py-4 px-6 transition-all outline-none font-medium"
+                           placeholder="Masukkan nama Anda...">
+                </div>
+                <div class="space-y-2">
+                    <label class="text-xs font-bold uppercase tracking-widest text-slate-400 ml-2">Subjek Pesan</label>
+                    <div class="relative">
+                        <select id="contact-subject" 
+                                class="w-full bg-slate-50 border-2 border-transparent focus:border-blue-600 focus:bg-white rounded-2xl py-4 px-6 transition-all outline-none font-medium appearance-none">
+                            <option value="Pertanyaan Produk">Pertanyaan Produk</option>
+                            <option value="Status Pesanan">Status Pesanan</option>
+                            <option value="Komplain/Saran">Komplain / Saran</option>
+                            <option value="Lainnya">Lainnya</option>
+                        </select>
+                        <i class="fas fa-chevron-down absolute right-6 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-2">
+                <label class="text-xs font-bold uppercase tracking-widest text-slate-400 ml-2">Pesan Anda</label>
+                <textarea id="contact-message" required rows="5"
+                          class="w-full bg-slate-50 border-2 border-transparent focus:border-blue-600 focus:bg-white rounded-3xl py-4 px-6 transition-all outline-none font-medium"
+                          placeholder="Tuliskan pesan detail di sini..."></textarea>
+            </div>
+
+            <button type="submit" 
+                    class="w-full bg-slate-900 hover:bg-blue-600 text-white py-5 rounded-2xl font-bold text-lg transition-all flex items-center justify-center gap-3 shadow-xl active:scale-95">
+                <i class="fab fa-whatsapp text-2xl"></i>
+                Kirim via WhatsApp
+            </button>
+        </form>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 text-center">
+        <div class="p-6">
+            <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-clock text-xl"></i>
+            </div>
+            <h4 class="font-bold text-slate-900 mb-1">Jam Operasional</h4>
+            <p class="text-sm text-slate-500 italic">Senin - Minggu<br>09:00 - 21:00 WIB</p>
+        </div>
+        <div class="p-6 border-x border-slate-50">
+            <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-map-marker-alt text-xl"></i>
+            </div>
+            <h4 class="font-bold text-slate-900 mb-1">Lokasi Kami</h4>
+            <p class="text-sm text-slate-500 italic text-center">Tangerang Selatan, Indonesia</p>
+        </div>
+        <div class="p-6">
+            <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-shield-alt text-xl"></i>
+            </div>
+            <h4 class="font-bold text-slate-900 mb-1">Respon Cepat</h4>
+            <p class="text-sm text-slate-500 italic">Admin membalas dalam hitungan menit.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('whatsapp-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Identitas Form
+    const form = e.target;
+    const phoneNumber = "62895701060973"; 
+
+    // Ambil Nilai Input
+    const name = document.getElementById('contact-name').value;
+    const subject = document.getElementById('contact-subject').value;
+    const message = document.getElementById('contact-message').value;
+
+    // Format Pesan WhatsApp
+    const text = `Halo Admin TokoModern!%0A%0A` +
+                 `*Nama:* ${name}%0A` +
+                 `*Subjek:* ${subject}%0A` +
+                 `*Pesan:* ${message}%0A%0A` +
+                 `Saya menunggu balasannya, terima kasih.`;
+
+    // Buka WhatsApp di Tab Baru
+    window.open(`https://api.whatsapp.com/send?phone=${phoneNumber}&text=${text}`, '_blank');
+
+    // MENGOSONGKAN FORM SETELAH DIKIRIM
+    form.reset();
+
+    // Menampilkan Notifikasi Sukses
+    if (typeof showToast === 'function') {
+        showToast("✅ Pesan berhasil dibuat!");
+    }
+});
+
+// Fungsi Toast (Jika belum terdefinisi di file lain)
+function showToast(msg) {
+    const toast = document.createElement('div');
+    toast.className = "fixed bottom-10 right-5 bg-gray-900 text-white px-6 py-3 rounded-2xl shadow-2xl z-[999] animate-bounce";
+    toast.innerText = msg;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+}
+</script>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="id">
+    {% include head.html %}
+<body class="bg-slate-50 text-slate-900 antialiased">
+
+    {% include navbar.html %}
+
+    <main class="min-h-screen">
+        {{ content }}
+    </main>
+
+    {% include cart-modal.html %}
+    {% include detail-modal.html %}
+    {% include footer.html %}
+
+</body>
+</html>

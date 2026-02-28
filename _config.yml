@@ -1,0 +1,45 @@
+# --- Konfigurasi Umum ---
+title: TokoModern Gaya Modern Kualitas Elite
+email: admin@tokomodern.com
+description: >-
+  Temukan kurasi produk pilihan untuk gaya hidup kontemporer. Transaksi instan via WhatsApp dengan jaminan keamanan 100%.
+
+# --- URL Settings ---
+baseurl: "" 
+url: "https://uta-ecommerce-app.netlify.app" 
+
+# --- Build Settings ---
+theme: 
+remote_theme: 
+
+# Markdown processor
+markdown: kramdown
+
+# --- Plugins ---
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+# --- Exclude (Sangat Penting) ---
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - netlify/
+  - package.json
+  - package-lock.json
+  - .env
+
+# --- Custom Variables (Opsional) ---
+whatsapp_number: "62895701060973"
+currency_symbol: "Rp"
+
+# --- Output Settings ---
+permalink: /:title/

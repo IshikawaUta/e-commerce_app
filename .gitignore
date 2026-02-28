@@ -1,0 +1,30 @@
+# --- Jekyll & Ruby ---
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+vendor/
+.bundle/
+Gemfile.lock
+
+# --- Node.js & Netlify ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.netlify/
+dist/
+
+# --- Environment & Data Sensitif ---
+.env
+.env.local
+.env.*.local
+*.env
+config.json
+
+# --- OS & Editor ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp

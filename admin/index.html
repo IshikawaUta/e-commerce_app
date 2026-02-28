@@ -1,0 +1,306 @@
+---
+layout: default
+---
+
+<div class="max-w-6xl mx-auto py-12 px-4">
+    <div id="admin-login-prompt" class="text-center py-20 bg-white rounded-[3rem] shadow-sm border border-slate-100">
+        <i class="fas fa-lock text-5xl text-slate-300 mb-6"></i>
+        <h2 class="text-2xl font-bold mb-4">Akses Terbatas</h2>
+        <p class="text-slate-500 mb-8">Silakan login untuk mengelola katalog produk Anda.</p>
+        <button onclick="netlifyIdentity.open()" class="bg-blue-600 text-white px-8 py-4 rounded-2xl font-bold hover:bg-blue-700 transition-all">
+            Login Admin
+        </button>
+    </div>
+
+    <div id="admin-content" class="hidden space-y-12">
+        <div class="flex items-center justify-between">
+            <h1 class="text-3xl font-extrabold tracking-tight">Dashboard <span class="text-blue-600">Produk</span></h1>
+            <button onclick="netlifyIdentity.logout()" class="text-red-500 font-semibold hover:bg-red-50 p-2 px-4 rounded-xl transition-all">
+                <i class="fas fa-sign-out-alt mr-2"></i>Keluar
+            </button>
+        </div>
+
+        <div class="bg-white p-8 md:p-10 rounded-[2.5rem] shadow-xl border border-slate-100">
+            <h3 id="form-title" class="text-xl font-bold mb-6 flex items-center gap-3">
+                <i class="fas fa-plus-circle text-blue-600"></i> Tambah Produk Baru
+            </h3>
+            
+            <form id="add-product-form">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <div id="image-preview-container" class="w-full h-80 bg-slate-50 border-2 border-dashed border-slate-200 rounded-3xl flex items-center justify-center overflow-hidden relative">
+                            <img id="admin-preview-img" src="" class="hidden w-full h-full object-cover">
+                            <div id="upload-placeholder" class="text-center p-6">
+                                <i class="fas fa-cloud-upload-alt text-4xl text-slate-300 mb-2"></i>
+                                <p class="text-xs text-slate-400">Belum ada foto produk</p>
+                            </div>
+                        </div>
+                        <input type="hidden" id="admin-image-url">
+                        <button type="button" id="upload_widget_btn" class="w-full bg-slate-900 text-white py-4 rounded-2xl font-bold hover:bg-black transition-all flex items-center justify-center gap-2">
+                            <i class="fas fa-camera"></i> Upload Foto
+                        </button>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="text-xs font-bold text-slate-400 uppercase tracking-widest ml-2">Nama Produk</label>
+                            <input type="text" id="admin-name" required class="w-full mt-1 bg-slate-50 border-none rounded-2xl py-4 px-6 focus:ring-2 focus:ring-blue-500" placeholder="Contoh: Sneakers Aero Black">
+                        </div>
+                        
+                        <div>
+                            <label class="text-xs font-bold text-slate-400 uppercase tracking-widest ml-2">Kategori Produk</label>
+                            <select id="admin-category" required class="w-full mt-1 bg-slate-50 border-none rounded-2xl py-4 px-6 focus:ring-2 focus:ring-blue-500 appearance-none">
+                                <option value="" disabled selected>Pilih Kategori...</option>
+                                <option value="Sepatu">Sepatu</option>
+                                <option value="Pakaian">Pakaian</option>
+                                <option value="Elektronik">Elektronik</option>
+                                <option value="Aksesoris">Aksesoris</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="text-xs font-bold text-slate-400 uppercase tracking-widest ml-2">Harga (Rupiah)</label>
+                            <input type="number" id="admin-price" required class="w-full mt-1 bg-slate-50 border-none rounded-2xl py-4 px-6 focus:ring-2 focus:ring-blue-500" placeholder="150000">
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-slate-400 uppercase tracking-widest ml-2">Deskripsi</label>
+                            <textarea id="admin-desc" rows="3" class="w-full mt-1 bg-slate-50 border-none rounded-2xl py-4 px-6 focus:ring-2 focus:ring-blue-500" placeholder="Detail produk..."></textarea>
+                        </div>
+                        
+                        <div class="flex gap-3 pt-2">
+                            <button type="submit" id="btn-save-product" class="flex-1 bg-blue-600 text-white py-4 rounded-2xl font-bold shadow-lg shadow-blue-100 hover:bg-blue-700 transition-all active:scale-95">
+                                Simpan ke Database
+                            </button>
+                            <button type="button" id="btn-cancel-edit" class="hidden bg-slate-200 text-slate-600 py-4 px-6 rounded-2xl font-bold hover:bg-slate-300 transition-all" onclick="resetForm()">
+                                Batal
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="bg-white rounded-[2.5rem] shadow-xl border border-slate-100 overflow-hidden">
+            <div class="p-8 border-b border-slate-50 flex justify-between items-center">
+                <h3 class="text-xl font-bold">Daftar Produk Aktif</h3>
+                <button onclick="fetchAdminProducts(true)" id="refresh-btn" class="text-blue-600 hover:rotate-180 transition-all duration-500 p-2" title="Hard Refresh Data">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead>
+                        <tr class="bg-slate-50 text-slate-400 text-xs uppercase tracking-widest">
+                            <th class="p-6">Info Produk</th>
+                            <th class="p-6">Kategori</th>
+                            <th class="p-6">Harga</th>
+                            <th class="p-6 text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-product-table" class="divide-y divide-slate-50"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+
+<script>
+    let isEditMode = false;
+    let currentEditId = null;
+
+    // 1. IDENTITY MANAGEMENT
+    function handleUserState(user) {
+        const prompt = document.getElementById('admin-login-prompt');
+        const content = document.getElementById('admin-content');
+        if (user) {
+            prompt.classList.add('hidden');
+            content.classList.remove('hidden');
+            fetchAdminProducts();
+        } else {
+            prompt.classList.remove('hidden');
+            content.classList.add('hidden');
+        }
+    }
+
+    netlifyIdentity.on('init', user => handleUserState(user));
+    netlifyIdentity.on('login', user => handleUserState(user));
+    netlifyIdentity.on('logout', () => handleUserState(null));
+
+    // 2. CLOUDINARY WIDGET
+    const myWidget = cloudinary.createUploadWidget({
+        cloudName: 'dzsqaauqn',
+        uploadPreset: 'e-commerce_app',
+        folder: 'products'
+    }, (error, result) => { 
+        if (!error && result && result.event === "success") { 
+            document.getElementById('admin-image-url').value = result.info.secure_url;
+            const previewImg = document.getElementById('admin-preview-img');
+            previewImg.src = result.info.secure_url;
+            previewImg.classList.remove('hidden');
+            document.getElementById('upload-placeholder').classList.add('hidden');
+        }
+    });
+
+    document.getElementById("upload_widget_btn").addEventListener("click", (e) => {
+        e.preventDefault();
+        myWidget.open();
+    }, false);
+
+    // 3. FETCH DATA (WITH HARD REFRESH CAPABILITY)
+    async function fetchAdminProducts(isHardRefresh = false) {
+        const tbody = document.getElementById('admin-product-table');
+        const refreshBtn = document.getElementById('refresh-btn');
+        
+        // Animasi loading pada tombol
+        if(refreshBtn) refreshBtn.classList.add('fa-spin');
+        tbody.innerHTML = '<tr><td colspan="4" class="p-10 text-center text-slate-400 italic">Sinkronisasi data terbaru...</td></tr>';
+        
+        try {
+            // "Hard Refresh" logic: tambahkan timestamp agar browser tidak mengambil dari cache
+            const url = isHardRefresh 
+                ? `/.netlify/functions/get-products?t=${new Date().getTime()}` 
+                : '/.netlify/functions/get-products';
+
+            const res = await fetch(url, {
+                method: 'GET',
+                cache: isHardRefresh ? 'no-store' : 'default', // Memaksa browser bypass cache
+                headers: {
+                    'Pragma': 'no-cache',
+                    'Cache-Control': 'no-cache'
+                }
+            });
+            
+            const products = await res.json();
+            
+            if (products.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" class="p-10 text-center text-slate-400">Belum ada produk.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = products.map(p => `
+                <tr class="hover:bg-slate-50 transition-all">
+                    <td class="p-6">
+                        <div class="flex items-center gap-4">
+                            <img src="${p.image_url}" class="w-14 h-14 rounded-2xl object-cover shadow-sm">
+                            <div>
+                                <div class="font-bold text-slate-800">${p.name}</div>
+                                <div class="text-xs text-slate-400 line-clamp-1 max-w-[200px]">${p.description || '-'}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="p-6">
+                        <span class="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-[10px] font-bold uppercase tracking-wider">
+                            ${p.category || 'Uncategorized'}
+                        </span>
+                    </td>
+                    <td class="p-6 font-bold text-blue-600 italic">Rp ${p.price.toLocaleString('id-ID')}</td>
+                    <td class="p-6">
+                        <div class="flex justify-center gap-2">
+                            <button onclick="startEdit('${p._id}', '${p.name}', ${p.price}, '${p.image_url}', '${p.description}', '${p.category}')" class="bg-amber-100 text-amber-600 p-3 rounded-xl hover:bg-amber-500 hover:text-white transition-all">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button onclick="deleteProduct('${p._id}')" class="bg-red-100 text-red-600 p-3 rounded-xl hover:bg-red-600 hover:text-white transition-all">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        } catch (err) {
+            tbody.innerHTML = '<tr><td colspan="4" class="p-10 text-center text-red-400">Gagal memuat data. Periksa koneksi Anda.</td></tr>';
+        } finally {
+            if(refreshBtn) refreshBtn.classList.remove('fa-spin');
+        }
+    }
+
+    // 4. PREPARE EDIT
+    function startEdit(id, name, price, img, desc, category) {
+        isEditMode = true;
+        currentEditId = id;
+
+        document.getElementById('form-title').innerHTML = `<i class="fas fa-edit text-amber-500"></i> Edit Produk`;
+        document.getElementById('admin-name').value = name;
+        document.getElementById('admin-price').value = price;
+        document.getElementById('admin-category').value = category || '';
+        document.getElementById('admin-desc').value = desc || '';
+        document.getElementById('admin-image-url').value = img;
+
+        const previewImg = document.getElementById('admin-preview-img');
+        previewImg.src = img;
+        previewImg.classList.remove('hidden');
+        document.getElementById('upload-placeholder').classList.add('hidden');
+
+        document.getElementById('btn-save-product').innerText = "Simpan Perubahan";
+        document.getElementById('btn-save-product').classList.replace('bg-blue-600', 'bg-amber-500');
+        document.getElementById('btn-cancel-edit').classList.remove('hidden');
+        
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function resetForm() {
+        isEditMode = false;
+        currentEditId = null;
+        document.getElementById('add-product-form').reset();
+        document.getElementById('admin-image-url').value = '';
+        document.getElementById('admin-preview-img').classList.add('hidden');
+        document.getElementById('upload-placeholder').classList.remove('hidden');
+        document.getElementById('form-title').innerHTML = `<i class="fas fa-plus-circle text-blue-600"></i> Tambah Produk Baru`;
+        document.getElementById('btn-save-product').innerText = "Simpan ke Database";
+        document.getElementById('btn-save-product').classList.replace('bg-amber-500', 'bg-blue-600');
+        document.getElementById('btn-cancel-edit').classList.add('hidden');
+    }
+
+    // 5. DELETE
+    async function deleteProduct(id) {
+        if (!confirm("Hapus produk ini dari katalog?")) return;
+        try {
+            const res = await fetch(`/.netlify/functions/manage-products?id=${id}`, { method: 'DELETE' });
+            if (res.ok) {
+                fetchAdminProducts(true); // Hard refresh setelah hapus
+            }
+        } catch (err) { alert("Gagal menghapus."); }
+    }
+
+    // 6. SUBMIT (CREATE & UPDATE)
+    document.getElementById('add-product-form').onsubmit = async (e) => {
+        e.preventDefault();
+        const imgUrl = document.getElementById('admin-image-url').value;
+        if (!imgUrl) return alert("Wajib upload foto produk.");
+
+        const btn = document.getElementById('btn-save-product');
+        btn.disabled = true;
+        btn.innerText = "Memproses...";
+
+        const productData = {
+            name: document.getElementById('admin-name').value,
+            price: parseInt(document.getElementById('admin-price').value),
+            category: document.getElementById('admin-category').value,
+            image_url: imgUrl,
+            description: document.getElementById('admin-desc').value
+        };
+
+        const url = isEditMode 
+            ? `/.netlify/functions/manage-products?id=${currentEditId}` 
+            : `/.netlify/functions/add-product`;
+
+        try {
+            const res = await fetch(url, {
+                method: isEditMode ? 'PUT' : 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(productData)
+            });
+
+            if (res.ok) {
+                resetForm();
+                fetchAdminProducts(true); // Hard refresh setelah simpan/update
+                alert(isEditMode ? "Produk diperbarui!" : "Produk berhasil ditambahkan!");
+            }
+        } catch (err) {
+            alert("Terjadi kesalahan sistem.");
+        } finally {
+            btn.disabled = false;
+        }
+    };
+</script>

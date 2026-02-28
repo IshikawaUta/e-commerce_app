@@ -1,0 +1,93 @@
+<footer class="bg-white border-t border-slate-100 pt-20 pb-10 px-4 mt-20">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16 text-left">
+            <div class="col-span-1 md:col-span-2">
+                <a href="/" class="text-2xl font-black tracking-tighter text-blue-600 mb-6 block">
+                    TOKO<span class="text-slate-900">MODERN</span>
+                </a>
+                <p class="text-slate-500 max-w-sm leading-relaxed mb-8">
+                    Destinasi kurasi produk premium dengan layanan transaksi cepat via WhatsApp. Kualitas terbaik, harga kompetitif.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white transition-all">
+                        <i class="fab fa-instagram text-lg"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-black hover:text-white transition-all">
+                        <i class="fab fa-tiktok text-lg"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-blue-500 hover:text-white transition-all">
+                        <i class="fab fa-facebook text-lg"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- <div>
+                <h4 class="font-bold text-slate-900 mb-6 uppercase tracking-widest text-xs">Belanja</h4>
+                <ul class="space-y-4 text-slate-500 text-sm">
+                    <li><a href="#" class="hover:text-blue-600 transition-colors">Cara Pemesanan</a></li>
+                    <li><a href="#" class="hover:text-blue-600 transition-colors">Info Pengiriman</a></li>
+                    <li><a href="#" class="hover:text-blue-600 transition-colors">Katalog Terbaru</a></li>
+                </ul>
+            </div> -->
+
+            <div>
+                <h4 class="font-bold text-slate-900 mb-6 uppercase tracking-widest text-xs">Bantuan</h4>
+                <ul class="space-y-4 text-slate-500 text-sm">
+                    <li><a href="/contact" class="hover:text-blue-600 transition-colors">Kontak Admin</a></li>
+                    <li><a href="/terms" class="hover:text-blue-600 transition-colors">Syarat & Ketentuan</a></li>
+                    <!-- <li><a href="/admin" class="hover:text-blue-600 transition-colors italic">Portal Admin</a></li> -->
+                </ul>
+            </div>
+        </div>
+
+        <div class="pt-8 border-t border-slate-50 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-6 grayscale opacity-50">
+                <i class="fab fa-cc-visa text-3xl"></i>
+                <i class="fab fa-cc-mastercard text-3xl"></i>
+                <i class="fab fa-whatsapp text-3xl"></i>
+                <span class="text-[10px] font-bold uppercase tracking-tighter text-slate-400">Direct Payment</span>
+            </div>
+            
+            <p class="text-slate-400 text-[11px] font-medium tracking-wide uppercase">
+                &copy; 2026 TokoModern Digital. Built with <i class="fas fa-bolt text-amber-400"></i> Optimized for Speed.
+            </p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="/assets/js/cart.js"></script>
+<script src="/assets/js/app.js"></script>
+
+<script>
+    // 1. Inisialisasi AOS (Animasi)
+    AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 100,
+        easing: 'ease-out-cubic'
+    });
+
+    // 2. Netlify Identity Handler
+    document.addEventListener("DOMContentLoaded", () => {
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", user => {
+                if (!user) {
+                    window.netlifyIdentity.on("login", () => {
+                        window.location.href = "/admin/";
+                    });
+                }
+            });
+        }
+    });
+
+    // 3. Efek Sticky Navbar Header (Opsional untuk pro feel)
+    window.addEventListener('scroll', () => {
+        const nav = document.querySelector('.glass-nav');
+        if (window.scrollY > 20) {
+            nav.classList.add('shadow-xl', 'shadow-slate-100/50');
+        } else {
+            nav.classList.remove('shadow-xl', 'shadow-slate-100/50');
+        }
+    });
+</script>

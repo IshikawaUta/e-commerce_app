@@ -1,0 +1,132 @@
+---
+layout: default
+---
+
+<section class="relative pt-28 pb-20 px-4 overflow-hidden bg-white">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full opacity-[0.04] pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-600 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[400px] h-[400px] bg-purple-600 rounded-full blur-[100px]"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto text-center relative z-10">
+        <span class="inline-block px-5 py-2 rounded-full bg-blue-50 text-blue-600 text-[10px] font-black uppercase tracking-[0.3em] mb-8" data-aos="fade-down">
+            ✨ Premium Curated Collection
+        </span>
+        <h1 class="text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.85] text-slate-900" data-aos="fade-up">
+            Gaya <span class="text-blue-600">Modern</span><br>Kualitas <span class="italic font-serif text-slate-700">Elite.</span>
+        </h1>
+        <p class="text-xl text-slate-500 max-w-2xl mx-auto mb-12 leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+            Temukan kurasi produk pilihan untuk gaya hidup kontemporer. Transaksi instan via WhatsApp dengan jaminan keamanan 100%.
+        </p>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 max-w-4xl mx-auto border-t border-slate-100 pt-12" data-aos="fade-up" data-aos-delay="200">
+            <div class="text-center group">
+                <div class="text-3xl font-black text-slate-900 group-hover:text-blue-600 transition-colors">10k+</div>
+                <div class="text-[10px] text-slate-400 uppercase tracking-widest mt-1 font-bold">Produk Terjual</div>
+            </div>
+            <div class="text-center group">
+                <div class="text-3xl font-black text-slate-900 group-hover:text-blue-600 transition-colors">4.9/5</div>
+                <div class="text-[10px] text-slate-400 uppercase tracking-widest mt-1 font-bold">Rating Pembeli</div>
+            </div>
+            <div class="text-center group">
+                <div class="text-3xl font-black text-slate-900 group-hover:text-blue-600 transition-colors">24h</div>
+                <div class="text-[10px] text-slate-400 uppercase tracking-widest mt-1 font-bold">SLA Pengiriman</div>
+            </div>
+            <div class="text-center group">
+                <div class="text-3xl font-black text-slate-900 group-hover:text-blue-600 transition-colors">Secure</div>
+                <div class="text-[10px] text-slate-400 uppercase tracking-widest mt-1 font-bold">Direct WA Pay</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="sticky top-[72px] z-30 py-4 bg-white/80 backdrop-blur-xl border-y border-slate-100 overflow-hidden">
+    <div class="w-full">
+        <div id="category-filter-container" class="flex items-center md:justify-center gap-3 overflow-x-auto no-scrollbar px-4 pb-2">
+            <button onclick="changeCategory(this, 'all')" class="btn-cat px-8 py-3 rounded-2xl bg-slate-900 text-white font-bold text-xs whitespace-nowrap shadow-xl shadow-slate-200 transition-all active:scale-95">Semua</button>
+            <button onclick="changeCategory(this, 'Sepatu')" class="btn-cat px-8 py-3 rounded-2xl bg-white text-slate-500 border border-slate-100 hover:border-blue-600 hover:text-blue-600 font-bold text-xs whitespace-nowrap transition-all shadow-sm active:scale-95">Sepatu</button>
+            <button onclick="changeCategory(this, 'Pakaian')" class="btn-cat px-8 py-3 rounded-2xl bg-white text-slate-500 border border-slate-100 hover:border-blue-600 hover:text-blue-600 font-bold text-xs whitespace-nowrap transition-all shadow-sm active:scale-95">Pakaian</button>
+            <button onclick="changeCategory(this, 'Elektronik')" class="btn-cat px-8 py-3 rounded-2xl bg-white text-slate-500 border border-slate-100 hover:border-blue-600 hover:text-blue-600 font-bold text-xs whitespace-nowrap transition-all shadow-sm active:scale-95">Elektronik</button>
+            <button onclick="changeCategory(this, 'Aksesoris')" class="btn-cat px-8 py-3 rounded-2xl bg-white text-slate-500 border border-slate-100 hover:border-blue-600 hover:text-blue-600 font-bold text-xs whitespace-nowrap transition-all shadow-sm active:scale-95">Aksesoris</button>
+            
+            <div class="min-w-[1px] h-1 md:hidden"></div>
+        </div>
+    </div>
+</section>
+
+<section id="catalog" class="py-20 px-4 max-w-7xl mx-auto min-h-screen">
+    <div class="flex items-center gap-4 mb-12">
+        <h2 class="text-2xl font-black text-slate-900 uppercase tracking-tighter">Explore Katalog</h2>
+        <div class="h-px flex-1 bg-slate-100"></div>
+    </div>
+
+    <div id="product-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+        <div id="loading-state" class="contents">
+            {% for i in (1..8) %}
+            <div class="flex flex-col animate-pulse">
+                <div class="bg-slate-100 w-full h-80 rounded-[2.5rem] mb-6 shadow-sm border border-slate-50"></div>
+                <div class="bg-slate-100 w-3/4 h-6 rounded-lg mb-3"></div>
+                <div class="bg-slate-100 w-1/2 h-5 rounded-lg"></div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div id="empty-state" class="hidden text-center py-32">
+        <div class="w-24 h-24 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-search text-3xl text-slate-200"></i>
+        </div>
+        <h3 class="text-xl font-bold text-slate-800">Produk Tidak Ditemukan</h3>
+        <p class="text-slate-400 mt-2">Kategori ini belum memiliki stok produk aktif.</p>
+        <button onclick="location.reload()" class="mt-8 text-blue-600 font-bold hover:underline">Reset Filter</button>
+    </div>
+</section>
+
+<div class="fixed bottom-4 right-4 md:hidden z-40">
+    <button onclick="toggleCartModal()" class="bg-blue-600 text-white w-20 h-20 rounded-[2rem] shadow-[0_20px_50px_rgba(37,99,235,0.4)] flex items-center justify-center text-3xl active:scale-90 transition-all hover:rotate-6 relative">
+        <i class="fas fa-shopping-basket"></i>
+        <span id="cart-badge-mobile" class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] w-8 h-8 rounded-full flex items-center justify-center border-4 border-white font-bold" style="display: none;">0</span>
+    </button>
+</div>
+
+<script>
+    function changeCategory(element, category) {
+        // Reset semua tombol ke style default (putih)
+        document.querySelectorAll('.btn-cat').forEach(btn => {
+            btn.className = "btn-cat px-8 py-3 rounded-2xl bg-white text-slate-500 border border-slate-100 hover:border-blue-600 hover:text-blue-600 font-bold text-xs whitespace-nowrap transition-all shadow-sm active:scale-95";
+        });
+        
+        // Ubah tombol yang diklik menjadi aktif (hitam)
+        element.className = "btn-cat px-8 py-3 rounded-2xl bg-slate-900 text-white font-bold text-xs whitespace-nowrap shadow-xl shadow-slate-200 transition-all active:scale-95";
+        
+        // Scroll otomatis tombol yang diklik ke posisi tengah (opsional, meningkatkan UX mobile)
+        element.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+
+        if (typeof filterCategory === "function") {
+            filterCategory(category);
+        }
+    }
+</script>
+
+<style>
+    /* Sembunyikan scrollbar tapi tetap bisa di-scroll */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { 
+        -ms-overflow-style: none; 
+        scrollbar-width: none; 
+        -webkit-overflow-scrolling: touch; /* Momentum scroll iOS */
+    }
+    
+    /* Menjaga agar shadow tombol tidak terpotong saat scrolling */
+    #category-filter-container {
+        padding-top: 0.5rem;
+        padding-bottom: 0.75rem;
+    }
+
+    @media (max-width: 768px) {
+        #category-filter-container {
+            /* Menghilangkan justify-center pada mobile agar scroll mulai dari kiri */
+            justify-content: flex-start;
+        }
+    }
+</style>

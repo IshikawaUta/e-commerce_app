@@ -1,0 +1,54 @@
+---
+layout: default
+permalink: /404.html
+---
+
+<section class="min-h-[80vh] flex items-center justify-center px-4 overflow-hidden">
+    <div class="max-w-2xl text-center">
+        <div class="relative mb-12" data-aos="zoom-in">
+            <h1 class="text-[12rem] md:text-[16rem] font-black text-slate-100 leading-none select-none">
+                404
+            </h1>
+            <div class="absolute inset-0 flex items-center justify-center">
+                <div class="relative">
+                    <div class="bg-blue-600 w-24 h-24 md:w-32 md:h-32 rounded-[2.5rem] shadow-2xl shadow-blue-200 flex items-center justify-center animate-bounce">
+                        <i class="fas fa-shopping-basket text-white text-4xl md:text-5xl"></i>
+                    </div>
+                    <div class="absolute -top-4 -right-4 w-6 h-6 bg-yellow-400 rounded-full animate-pulse"></div>
+                    <div class="absolute -bottom-8 -left-8 w-8 h-8 bg-pink-400 rounded-full animate-pulse delay-75"></div>
+                </div>
+            </div>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="200">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">
+                Waduh! Halamannya Hilang...
+            </h2>
+            <p class="text-slate-500 text-lg mb-10 max-w-md mx-auto">
+                Sepertinya produk atau halaman yang kamu cari sudah habis atau pindah ke alamat lain. Jangan sedih, mari belanja produk keren lainnya!
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="/" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-2xl font-bold shadow-lg shadow-blue-100 transition-all active:scale-95 flex items-center justify-center gap-2">
+                    <i class="fas fa-home"></i>
+                    Kembali ke Beranda
+                </a>
+                <button onclick="toggleCartModal()" class="w-full sm:w-auto bg-white border border-slate-200 text-slate-700 px-10 py-4 rounded-2xl font-bold hover:bg-slate-50 transition-all flex items-center justify-center gap-2">
+                    <i class="fas fa-shopping-cart"></i>
+                    Cek Keranjang
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Membuat angka 404 memiliki gradasi halus jika browser mendukung */
+    @supports (-webkit-background-clip: text) {
+        h1 {
+            background: linear-gradient(180deg, #f1f5f9 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }
+</style>

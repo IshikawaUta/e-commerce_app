@@ -1,0 +1,31 @@
+<nav class="glass-nav sticky top-0 z-50 px-4 py-4 bg-white/80 backdrop-blur-lg border-b border-gray-100">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+        <a href="/" class="text-2xl font-extrabold text-blue-600 tracking-tighter shrink-0 hover:scale-105 transition-transform">
+            TOKO<span class="text-gray-900">MODERN</span>
+        </a>
+
+        <form action="/search" method="GET" class="hidden md:flex flex-1 max-w-md mx-4 relative group">
+            <input type="text" name="q" id="nav-search-input" 
+                   class="w-full bg-gray-100 border-2 border-transparent rounded-2xl py-2.5 pl-12 pr-4 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-100 transition-all placeholder:text-gray-400 text-sm outline-none"
+                   placeholder="Cari produk favoritmu...">
+            <button type="submit" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-blue-600 transition-colors">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+
+        <div class="flex items-center gap-2 md:gap-4">
+            <a href="/search" class="md:hidden p-2.5 text-gray-600 hover:bg-slate-100 rounded-2xl transition-all">
+                <i class="fas fa-search text-xl"></i>
+            </a>
+
+            <!-- <a href="/admin" class="p-2.5 text-gray-400 hover:text-slate-900 rounded-2xl transition-all hidden sm:block">
+                <i class="fas fa-user-shield text-xl"></i>
+            </a> -->
+
+            <button onclick="toggleCartModal()" class="hidden md:flex relative p-2.5 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-2xl transition-all active:scale-90">
+                <i class="fas fa-shopping-cart text-xl"></i>
+                <span id="cart-badge" class="absolute top-1 right-1 bg-blue-600 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-white shadow-sm" style="display: none;">0</span>
+            </button>
+        </div>
+    </div>
+</nav>
