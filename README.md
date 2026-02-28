@@ -1,6 +1,15 @@
 # 🛒 TokoModern - E-Commerce Curated Premium
 
+![Tailwind](https://img.shields.io/badge/Tailwind-blue.svg)
+![Cloudinary](https://img.shields.io/badge/Cloudinary-blue.svg)
+![Jekyll](https://img.shields.io/badge/Jekyll-red.svg)
+![Netliy](https://img.shields.io/badge/Netlify-green.svg)
+![MongoDB Atlas](https://img.shields.io/badge/MongoDB-Atlas-green.svg)
+![SEO Optimized](https://img.shields.io/badge/SEO-Optimized-orange.svg)
+
 **TokoModern** adalah platform *e-commerce* statis modern yang dirancang untuk kurasi produk premium dengan sistem transaksi instan via WhatsApp. Proyek ini menggabungkan kecepatan **Jekyll** dengan fleksibilitas **Netlify Functions** serta optimasi gambar berbasis **Cloudinary**.
+
+![Gambar Demo Project](https://res.cloudinary.com/dzsqaauqn/image/upload/v1772292413/image_ayinku.jpg)
 
 ## 🚀 Fitur Utama
 
