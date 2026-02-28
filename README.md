@@ -1,11 +1,11 @@
 # 🛒 TokoModern - E-Commerce Curated Premium
 
-![Tailwind](https://img.shields.io/badge/Tailwind-blue.svg)
-![Cloudinary](https://img.shields.io/badge/Cloudinary-blue.svg)
-![Jekyll](https://img.shields.io/badge/Jekyll-red.svg)
-![Netliy](https://img.shields.io/badge/Netlify-green.svg)
-![MongoDB Atlas](https://img.shields.io/badge/MongoDB-Atlas-green.svg)
-![SEO Optimized](https://img.shields.io/badge/SEO-Optimized-orange.svg)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
+![Cloudinary](https://img.shields.io/badge/Cloudinary-3448C5?style=flat&logo=cloudinary&logoColor=white)
+![Jekyll](https://img.shields.io/badge/Jekyll-CC0000?style=flat&logo=jekyll&logoColor=white)
+![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=flat&logo=netlify&logoColor=white)
+![MongoDB Atlas](https://img.shields.io/badge/MongoDB_Atlas-47A248?style=flat&logo=mongodb&logoColor=white)
+![SEO Optimized](https://img.shields.io/badge/SEO-Optimized-orange?style=flat&logo=google-search-console&logoColor=white)
 
 **TokoModern** adalah platform *e-commerce* statis modern yang dirancang untuk kurasi produk premium dengan sistem transaksi instan via WhatsApp. Proyek ini menggabungkan kecepatan **Jekyll** dengan fleksibilitas **Netlify Functions** serta optimasi gambar berbasis **Cloudinary**.
 
