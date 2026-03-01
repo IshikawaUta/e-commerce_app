@@ -9,7 +9,8 @@
 
 **TokoModern** adalah platform *e-commerce* statis modern yang dirancang untuk kurasi produk premium dengan sistem transaksi instan via WhatsApp. Proyek ini menggabungkan kecepatan **Jekyll** dengan fleksibilitas **Netlify Functions** serta optimasi gambar berbasis **Cloudinary**.
 
-![Gambar Demo Project](https://res.cloudinary.com/dzsqaauqn/image/upload/v1772292413/image_ayinku.jpg)
+![Gambar Demo Project Desktop](https://res.cloudinary.com/dzsqaauqn/image/upload/v1772344753/02c2c051-317c-4f95-8981-369fe38a994d_fgsbva.jpg)
+![Gambar Demo Project Mobile](https://res.cloudinary.com/dzsqaauqn/image/upload/v1772344926/b26c7d52-cd0d-4504-be1b-401efa48dd8f_d2laxr.jpg)
 
 ## 🚀 Fitur Utama
 
